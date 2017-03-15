@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="${pageContext.request.contextPath }/student/update.do" method="get">
+	<form action="${pageContext.request.contextPath }/student/save.do" method="get">
 		<table>
 			<tr>
 				<th colspan="2">Student Modify</th>

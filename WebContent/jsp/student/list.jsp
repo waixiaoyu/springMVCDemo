@@ -23,7 +23,8 @@
 				<td>${student.name }</td>
 				<td>${student.age }</td>
 				<td><a
-					href="${pageContext.request.contextPath }/student/preSave.do?id=${student.id}">modify</a></td>
+					href="${pageContext.request.contextPath }/student/preSave.do?id=${student.id}">modify</a>&nbsp;<a
+					href="${pageContext.request.contextPath }/student/delete.do?id=${student.id}">delete</a></td>
 			</tr>
 		</c:forEach>
 	</table>

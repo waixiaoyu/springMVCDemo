@@ -40,16 +40,14 @@ public class StudentController {
 		return mav;
 	}
 
-	// @RequestMapping("/add")
-	// public ModelAndView add(@RequestParam(value = "name") String name,
-	// @RequestParam(value = "age") String age) {
-	// ModelAndView mav = new ModelAndView();
-	// studentList.add(new Student(studentList.size() + 1, name,
-	// Integer.parseInt(age)));
-	// mav.addObject("studentList", studentList);
-	// mav.setViewName("student/list");
-	// return mav;
-	// }
+	@RequestMapping("/add")
+	public ModelAndView add(@RequestParam(value = "name") String name, @RequestParam(value = "age") String age) {
+		ModelAndView mav = new ModelAndView();
+		studentList.add(new Student(studentList.size() + 1, name, Integer.parseInt(age)));
+		mav.addObject("studentList", studentList);
+		mav.setViewName("student/list");
+		return mav;
+	}
 
 	@RequestMapping("/update")
 	public ModelAndView update(@RequestParam(value = "id") String id, @RequestParam(value = "name") String name,
@@ -64,7 +62,19 @@ public class StudentController {
 
 	@RequestMapping("/save")
 	public String save(Student student) {
-		studentList.add(student);
+		if (student.getId() != 0) {
+			Student s = studentList.get(student.getId() - 1);
+			s.setName(student.getName());
+			s.setAge(student.getAge());
+		} else {
+			studentList.add(student);
+		}
+		return "redirect:/student/list.do";
+	}
+
+	@RequestMapping("/delete")
+	public String delete(int id) {
+		studentList.remove(id - 1);
 		return "redirect:/student/list.do";
 	}
 }
